@@ -9,6 +9,7 @@ A simple visitor management system built with Node.js, Express, and PostgreSQL.
 - [Why Supabase and PostgreSQL](#why-supabase-and-postgresql)
 - [Assumptions](#assumptions)
 - [Trade-offs](#trade-offs)
+- [Postman Collection](#postman-collection)
 
 ---
 
@@ -85,30 +86,30 @@ curl -X POST http://localhost:5010/check-in \
                           ▼
 ┌─────────────────────────────────────────────────────────────┐
 │                    Express Server                           │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │              visitorController.js                   │   │
-│  │  - checkInVisitor()                                 │   │
-│  │  - checkOutVisitor()                                │   │
-│  │  - getActiveVisitors()                              │   │
-│  └─────────────────────────────────────────────────────┘   │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │              async.waterfall()                       │   │
-│  │  (Validation → Build Payload → Save)                 │   │
-│  └─────────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │              visitorController.js                   │    │
+│  │  - checkInVisitor()                                 │    │
+│  │  - checkOutVisitor()                                │    │
+│  │  - getActiveVisitors()                              │    │
+│  └─────────────────────────────────────────────────────┘    │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │              async.waterfall()                      │    │
+│  │  (Validation → Build Payload → Save)                │    │
+│  └─────────────────────────────────────────────────────┘    │
 └─────────────────────────┬───────────────────────────────────┘
                           │ Knex Query Builder
                           ▼
 ┌─────────────────────────────────────────────────────────────┐
 │                   PostgreSQL Database                       │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │                 visitors table                       │   │
-│  │  - id (UUID)                                        │   │
-│  │  - check_in_id (unique)                             │   │
-│  │  - name, email, company, host_employee              │   │
-│  │  - check_in_time, check_out_time                    │   │
-│  │  - duration_minutes                                 │   │
-│  │  - status (active/checked_out)                      │   │
-│  └─────────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │                 visitors table                      │    │
+│  │  - id (UUID)                                        │    │
+│  │  - check_in_id (unique)                             │    │
+│  │  - name, email, company, host_employee              │    │
+│  │  - check_in_time, check_out_time                    │    │
+│  │  - duration_minutes                                 │    │
+│  │  - status (active/checked_out)                      │    │
+│  └─────────────────────────────────────────────────────┘    │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -244,10 +245,15 @@ curl -X POST http://localhost:5010/check-in \
 
 ---
 
+## Postman Collection
+
+`https://web.postman.co/workspace/Express~0acca6d0-300f-446c-8ba8-01f01a1bf950/collection/43043383-d3c9c953-7a06-4c61-9410-83364a12f532?action=share&source=copy-link&creator=43043383`
+
 ## Future Improvements
 
 - [ ] Add `client_id` for idempotent check-ins
+- [ ] Changing from using `async.waterfall` to `async/await`
 - [ ] Add authentication layer
-- [ ] Add input validation (Joi/Zod)
+- [ ] Add input validation (Zod)
 - [ ] Add rate limiting
 - [ ] Add API versioning
