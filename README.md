@@ -9,7 +9,6 @@ A simple visitor management system built with Node.js, Express, and PostgreSQL.
 - [Why Supabase and PostgreSQL](#why-supabase-and-postgresql)
 - [Assumptions](#assumptions)
 - [Trade-offs](#trade-offs)
-- [Postman Collection](#postman-collection)
 
 ---
 
@@ -244,10 +243,6 @@ curl -X POST http://localhost:5010/check-in \
 **Trade-off**: Using Supabase for convenience — acceptable for MVP, may migrate to self-hosted for cost control at scale.
 
 ---
-
-## Postman Collection
-
-`https://web.postman.co/workspace/Express~0acca6d0-300f-446c-8ba8-01f01a1bf950/collection/43043383-d3c9c953-7a06-4c61-9410-83364a12f532?action=share&source=copy-link&creator=43043383`
 
 ## Future Improvements
 
